@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="pt-Br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="image/icon.png">
+    <title>Ficha</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://bootswatch.com/5/vapor/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/fontawesome.min.css" integrity="sha384-z4tVnCr80ZcL0iufVdGQSUzNvJsKjEtqYZjiQrrYKlpGow+btDHDfQWkFjoaz/Zr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.2/css/fontawesome.min.css" integrity="sha384-X8QTME3FCg1DLb58++lPvsjbQoCT9bp3MsUU3grbIny/3ZwUJkRNO8NPW6zqzuW9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
+
+    <style>
+        #btnSalvar{
+            display: none;
+        }
+    </style>
+</head>
+
+<body> 
+     <div class="menu">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                <a class="navbar-brand" href="#">CyberBonny 2077</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarColor02">
+                    <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home
+                        <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#atributos">Atributos
+                        <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#pericias">Pericias
+                        <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#implantes">Implantes
+                        <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#fluxo">Fluxo Vida
+                        <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#equipamentos">Equipamentos
+                        <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#armas">Armas
+                        <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    
+                    
+                    </ul>
+                    <form class="d-flex">
+                      <button class="btn btn-secondary my-2 my-sm-0" type="button" id="btnSalvar">Salvar</button>
+                    </form>
+                </div>
+                </div>
+            </nav>
+        </div>
+       
+    <div class="card border-light  container">
+        <div class="card border-primary mb-3" style="max-width: 20rem;">
+            <div class="card-header">Ficha</div>
+        </div>
+        <div class="row">
+            <!--Primeira Coluna-->
+            <div class="col-md-7 mx-auto mt-5">
+                <form>
+                    <!--Personagens-->
+                    <div class="form-group row">
+                        <label for="inputNome" class="col-sm-2 col-form-label">Nome</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="inputNome">
+                        </div>
+                        <label for="inputIdade" class="col-sm-1 col-form-label">Idade</label>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" id="inputIdade">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPapel" class="col-sm-2 col-form-label">Papel</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="inputPapel">
+                                <option value="Escolha">Escolha</option>
+                                <option value="Solo">Solo</option>
+                                <option value="Roqueiro">Roqueiro</option>
+                                <option value="Netrunner">Netrunner</option>
+                                <option value="Tecnico">Tecnico</option>
+                                <option value="Nomade">Nomade</option>
+                                <option value="Atravessador">Atravessador</option>
+                                <option value="Policia">Policia</option>
+                                <option value="Executivo">Executivo</option>
+                                <option value="Midia">Midia</option>
+                                <option value="Tecnomedico">Tecnomedico</option>
+                                <option value="Taxista">Taxista</option>
+                            </select>
+                        </div>
+                        <label for="inputVIT" class="col-sm-1 col-form-label">VIT</label>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" id="inputVIT">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPontosPersonagem" class="col-sm-3 col-form-label">Pontos de Personagem</label>
+                        <div class="col-sm-3">
+                            <input type="number" class="form-control" id="inputPontosPersonagem">
+                        </div>
+                        
+                        <label for="inputEd" class="col-sm-1 col-form-label">Ed: </label>
+                        <div class="col-sm-3">
+                            <input type="number" class="form-control" id="inputEd">
+                        </div>
+                        
+                    </div>
+
+
+                    <!--Atributos-->
+                    <div class="form-group row">
+                        <h4 id="atributos"><strong>Atributos</strong></h4>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputINT" class="col-sm-2 col-form-label">INT</label>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" id="inputINT">
+                        </div>
+                        <label for="inputREF" class="col-sm-2 col-form-label">REF</label>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" id="inputREF">
+                        </div>
+                        <label for="inputTEC" class="col-sm-2 col-form-label">TEC</label>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" id="inputTEC">
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputAuCoN" class="col-sm-2 col-form-label">AuCo</label>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" id="inputAuCoN">
+                        </div>
+                        <label for="inputATR" class="col-sm-2 col-form-label">ATR</label>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" id="inputATR">
+                        </div>
+                        <label for="inputSOR" class="col-sm-2 col-form-label">SOR</label>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" id="inputSOR">
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputMOV" class="col-sm-2 col-form-label">MOV</label>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" id="inputMOV">
+                        </div>
+                        <label for="inputTCO" class="col-sm-2 col-form-label">TCO</label>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" id="inputTCO">
+                        </div>
+                        <label for="inputEMP" class="col-sm-2 col-form-label">EMP</label>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" id="inputEMP">
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr class="table-dark">
+                                    <th scope="row">Localização</th>
+                                    <th>Cabeça 1</th>
+                                    <th>Torso 2-4</th>
+                                    <th>Braço D 5</th>
+                                    <th>Braço E 6</th>
+                                    <th>Perna D 7-8</th>
+                                    <th>Perna E 9-10</th>
+                                </tr>
+                                <tr class="table-dark">
+                                    <th scope="row">Blindagem</th>
+                                    <th>
+                                        <div>
+                                            <input type="number" class="form-control" id="inputBlindagemCabeça">
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div>
+                                            <input type="number" class="form-control" id="inputBlindagemTorso">
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div>
+                                            <input type="number" class="form-control" id="inputBlindagemBraçoD">
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div>
+                                            <input type="number" class="form-control" id="inputBlindagemBraçoE">
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div>
+                                            <input type="number" class="form-control" id="inputBlindagemPernaD">
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div>
+                                            <input type="number" class="form-control" id="inputBlindagemPernaE">
+                                        </div>
+                                    </th>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </form>
+                <!--Pericias-->
+                <h3 id="pericias"><strong>Pericias</strong></h3>
+                <form>
+                    <!--Habilidades Especias-->
+                    <div class="form-group row">
+                        <h5>Habilidades Especiais</h5>
+
+                    </div>
+                    <div class="form-group row">
+                        <label for="periciaAutoridade" class="col-sm-2 col-form-label">Autoridade: </label>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" id="periciaAutoridade">
+                        </div>
+                        <label for="periciaALiderança" class="col-sm-2 col-form-label">Liderança: </label>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" id="periciaALiderança">
+                        </div>
+                        <label for="periciaNoçaoCombate" class="col-sm-2 col-form-label">Noção de Combate: </label>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" id="periciaNoçaoCombate">
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <label for="periciaCredibilidade" class="col-sm-2 col-form-label">Credibilidade: </label>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" id="periciaCredibilidade">
+                        </div>
+                        <label for="periciaFamilia" class="col-sm-2 col-form-label">Familia: </label>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" id="periciaFamilia">
+                        </div>
+                        <label for="periciaInterface" class="col-sm-2 col-form-label">Interface: </label>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" id="periciaInterface">
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <label for="periciaReparoImprov" class="col-sm-2 col-form-label">Reparo Improvisado: </label>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" id="periciaReparoImprov">
+                        </div>
+                        <label for="periciaTecMedica" class="col-sm-2 col-form-label">Tec Medica: </label>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" id="periciaTecMedica">
+                        </div>
+                        <label for="periciaRecursos" class="col-sm-2 col-form-label">Recursos: </label>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" id="periciaRecursos">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="periciaNegociar" class="col-sm-2 col-form-label">Negociar: </label>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" id="periciaNegociar">
+                        </div>
+
+                    </div>
+                    <hr>
+                    <!--Pericia Atratividade-->
+
+                    <div class="form-group row">
+                        <h5><b>Atratividade</b></h5>
+
+                    </div>
+                    <div class="recolher" id="atratividade">
+
+                        <div class="form-group row">
+                            <label for="periciaCuidadosPessoais" class="col-sm-3 col-form-label">Cuidados Pessoais:
+                            </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaCuidadosPessoais">
+                            </div>
+                            <label for="periciaEstilo" class="col-sm-3 col-form-label">Roupa e Estilo: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaEstilo">
+                            </div>
+
+                        </div>
+                    </div>
+                    <hr>
+                    <!--Pericia Tipo Corporal-->
+                    <div class="form-group row">
+                        <h5><b>Tipo Corporal</b></h5>
+
+                    </div>
+                    <div class="recolher" id="TipoCoporal">
+                        <div class="form-group row">
+                            <label for="periciaRessistência" class="col-sm-2 col-form-label">Resistência: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaRessistência">
+                            </div>
+                            <label for="periciaFeitoForca" class="col-sm-2 col-form-label">Feitos de Força: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaFeitoForca">
+                            </div>
+                            <label for="periciaNatação" class="col-sm-2 col-form-label">Natação: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaNatação">
+                            </div>
+
+                        </div>
+                    </div>
+                    <hr>
+                    <!--Pericia Auto Controle-->
+                    <div class="form-group row">
+                        <h5><b>Auto Controle</b></h5>
+
+                    </div>
+                    <div class="recolher" id="AutoControle">
+                        <div class="form-group row">
+                            <label for="periciaInterrogatório" class="col-sm-2 col-form-label">Interrogatório: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaInterrogatório">
+                            </div>
+                            <label for="periciaIntimidação" class="col-sm-2 col-form-label">Intimidação </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaIntimidação">
+                            </div>
+                            <label for="periciaOratória" class="col-sm-2 col-form-label">Oratória: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaOratória">
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <label for="periciaRessistênciaTortDrog" class="col-sm-2 col-form-label">Resistência
+                                Tortura/Drogas: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaRessistênciaTortDrog">
+                            </div>
+                            <label for="periciaManha" class="col-sm-2 col-form-label">Manha: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaManha">
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <hr>
+                    <!--Pericia Empatia-->
+                    <div class="form-group row">
+                        <h5><b>Empatia</b></h5>
+
+                    </div>
+                    <div class="recolher" id="Empatia">
+                        <div class="form-group row">
+                            <label for="periciaPercepção" class="col-sm-2 col-form-label">Percepção: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaPercepção">
+                            </div>
+                            <label for="periciaEntervista" class="col-sm-2 col-form-label">Entrevista: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaEntervista">
+                            </div>
+                            <label for="periciaLiderança" class="col-sm-2 col-form-label">Liderança: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaLiderança">
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <label for="periciaSedução" class="col-sm-2 col-form-label">Sedução: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaSedução">
+                            </div>
+                            <label for="periciaTratoSocial" class="col-sm-2 col-form-label">Trato Social: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaTratoSocial">
+                            </div>
+                            <label for="periciaLabia" class="col-sm-2 col-form-label">Persuassão / Labia: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaLabia">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="periciaAtuação" class="col-sm-2 col-form-label">Atuação: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaAtuação">
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <!--Pericia Inteligencia-->
+                    <div class="form-group row">
+                        <h5><b>Inteligencia</b></h5>
+
+                    </div>
+                    <div class="recolher" id="Inteligencia">
+                        <div class="form-group row">
+                            <label for="periciaContabilidade" class="col-sm-2 col-form-label">Contabilidade: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaContabilidade">
+                            </div>
+                            <label for="periciaAntropologia" class="col-sm-2 col-form-label">Antropologia: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaAntropologia">
+                            </div>
+                            <label for="periciaAtenção" class="col-sm-2 col-form-label">Atenção / Notar: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaAtenção">
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <label for="periciaBioloogia" class="col-sm-2 col-form-label">Bioloogia: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaBioloogia">
+                            </div>
+                            <label for="periciaBotânica" class="col-sm-2 col-form-label">Botânica: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaBotânica">
+                            </div>
+                            <label for="periciaQuimica" class="col-sm-2 col-form-label">Quimica: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaQuimica">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="periciaComposição" class="col-sm-2 col-form-label">Composição: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaComposição">
+                            </div>
+                            <label for="periciaDiagnose" class="col-sm-2 col-form-label">Diagnose: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaDiagnose">
+                            </div>
+                            <label for="periciaCultura" class="col-sm-2 col-form-label">Educação / Cultura: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaCultura">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="periciaEspecialistas" class="col-sm-2 col-form-label">Especialistas: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaEspecialistas">
+                            </div>
+                            <label for="periciaJogo" class="col-sm-2 col-form-label">Jogo: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaJogo">
+                            </div>
+                            <label for="periciaGeologia" class="col-sm-2 col-form-label">Geologia: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaGeologia">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="periciaEsconder" class="col-sm-2 col-form-label">Esconder / Evadir: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaEsconder">
+                            </div>
+                            <label for="periciaHistória" class="col-sm-2 col-form-label">História: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaHistória">
+                            </div>
+                            <label for="periciaIdioma" class="col-sm-2 col-form-label">Idioma: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaIdioma">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="periciaPesquisa" class="col-sm-2 col-form-label">Pesquisa: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaPesquisa">
+                            </div>
+                            <label for="periciaMatematica" class="col-sm-2 col-form-label">Matematica: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaMatematica">
+                            </div>
+                            <label for="periciaFisica" class="col-sm-2 col-form-label">Fisica: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaFisica">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="periciaProgramação" class="col-sm-2 col-form-label">Programação: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaProgramação">
+                            </div>
+                            <label for="periciaSombra" class="col-sm-2 col-form-label">Sombra / Rastreamento: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaSombra">
+                            </div>
+                            <label for="periciaMercado" class="col-sm-2 col-form-label">Mercado Ações: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaMercado">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="periciaConSistemas" class="col-sm-2 col-form-label">Conhecimento de Sistemas:
+                            </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaConSistemas">
+                            </div>
+                            <label for="periciaPedagogia" class="col-sm-2 col-form-label">Pedagogia: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaPedagogia">
+                            </div>
+                            <label for="periciaSobrevivência" class="col-sm-2 col-form-label">Sobrevivência: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaSobrevivência">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="periciaZoologia" class="col-sm-2 col-form-label">Zoologia: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaZoologia">
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <!--Pericia Reflexos-->
+                    <div class="form-group row">
+                        <h5><b>Reflexos</b></h5>
+
+                    </div>
+                    <div class="recolher" id="Reflexo">
+                        <div class="form-group row">
+                            <label for="periciaArqueirismo" class="col-sm-2 col-form-label">Arqueirismo: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaArqueirismo">
+                            </div>
+                            <label for="periciaAtletismo" class="col-sm-2 col-form-label">Atletismo: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaAtletismo">
+                            </div>
+                            <label for="periciaBriga" class="col-sm-2 col-form-label">Briga: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaBriga">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="periciaDança" class="col-sm-2 col-form-label">Dança: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaDança">
+                            </div>
+                            <label for="periciaEsquivar" class="col-sm-2 col-form-label">Esquivar / Escapar: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaEsquivar">
+                            </div>
+                            <label for="periciaCondução" class="col-sm-2 col-form-label">Condução: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaCondução">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="periciaEsgrima" class="col-sm-2 col-form-label">Esgrima: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaEsgrima">
+                            </div>
+                            <label for="periciaArmaCurta" class="col-sm-2 col-form-label">Armas Curtas: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaArmaCurta">
+                            </div>
+                            <label for="periciaArmasPesadas" class="col-sm-2 col-form-label">Armas Pesadas: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaArmasPesadas">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="periciaArtesMarciais" class="col-sm-2 col-form-label">Artes Marciais: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaArtesMarciais">
+                            </div>
+                            <label for="periciaLutaRomana" class="col-sm-2 col-form-label">Luta Greco-Romana: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaLutaRomana">
+                            </div>
+                            <label for="periciaArmasBrancas" class="col-sm-2 col-form-label">Armas Brancas: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaArmasBrancas">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="periciaMotocicleta" class="col-sm-2 col-form-label">Motocicleta: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaMotocicleta">
+                            </div>
+                            <label for="periciaMaquinaPesada" class="col-sm-2 col-form-label">Op Maquina Pesada:
+                            </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaMaquinaPesada">
+                            </div>
+                            <label for="periciaPilotagemGiro" class="col-sm-2 col-form-label">Pilotagem de Giro:
+                            </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaPilotagemGiro">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="periciaPilotagemAsa" class="col-sm-2 col-form-label">Pilotagem Asa Fixa:
+                            </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaPilotagemAsa">
+                            </div>
+                            <label for="periciaPilotagemDirigivel" class="col-sm-2 col-form-label">Pilotagem Dirigivel:
+                            </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaPilotagemDirigivel">
+                            </div>
+                            <label for="periciaPilotagemVec" class="col-sm-2 col-form-label">Pilotagem de Vec Imp Vet:
+                            </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaPilotagemVec">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="periciaFuzil" class="col-sm-2 col-form-label">Fuzil: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaFuzil">
+                            </div>
+                            <label for="periciaFurtividade" class="col-sm-2 col-form-label">Furtividade: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaFurtividade">
+                            </div>
+                            <label for="periciaSubMetralhadora" class="col-sm-2 col-form-label">Sub Metralhadora:
+                            </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaSubMetralhadora">
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <!--Pericia Tecnica-->
+                    <div class="form-group row">
+                        <h5><b>Tecnica</b></h5>
+
+                    </div>
+                    <div class="recolher" id="Tecnica">
+                        <div class="form-group row">
+                            <label for="periciaAeroTec" class="col-sm-2 col-form-label">Aero Tec: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaAeroTec">
+                            </div>
+                            <label for="periciaAvTec" class="col-sm-2 col-form-label">AV Tec: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaAvTec">
+                            </div>
+                            <label for="periciaTecnologiaBasica" class="col-sm-2 col-form-label">Tecnologia Basica:
+                            </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaTecnologiaBasica">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="periciaOpTanque" class="col-sm-2 col-form-label">Op Tanq Criogenio:
+                            </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaOpTanque">
+                            </div>
+                            <label for="periciaCiberTerminal" class="col-sm-2 col-form-label">Projeto de Ciber Terminal:
+                            </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaCiberTerminal">
+                            </div>
+                            <label for="periciaCibertecnologia" class="col-sm-2 col-form-label">Cibertecnologia:
+                            </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaCibertecnologia">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="periciaDemolições" class="col-sm-2 col-form-label">Demolições: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaDemolições">
+                            </div>
+                            <label for="periciaDisfarce" class="col-sm-2 col-form-label">Disfarce: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaDisfarce">
+                            </div>
+                            <label for="periciaEletronica" class="col-sm-2 col-form-label">Eletronica: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaEletronica">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="periciaSegEletronica" class="col-sm-2 col-form-label">Seg Eletrônica:
+                            </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaSegEletronica">
+                            </div>
+                            <label for="periciaPrimeirosSocorros" class="col-sm-2 col-form-label">Primeiros Socorros:
+                            </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaPrimeirosSocorros">
+                            </div>
+                            <label for="periciaFalsificação" class="col-sm-2 col-form-label">Falsificação: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaFalsificação">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="periciaGitoTec" class="col-sm-2 col-form-label">Gito Tec: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaGitoTec">
+                            </div>
+                            <label for="periciaDesenho" class="col-sm-2 col-form-label">Pintura e Desenho:
+                            </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaDesenho">
+                            </div>
+                            <label for="periciaFilmangem" class="col-sm-2 col-form-label">Fotografia e Filmagem:
+                            </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaFilmangem">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="periciaMedicamento" class="col-sm-2 col-form-label">Medicamento: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaMedicamento">
+                            </div>
+                            <label for="periciaArrombamento" class="col-sm-2 col-form-label">Arrombamento: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaArrombamento">
+                            </div>
+                            <label for="periciaPunga" class="col-sm-2 col-form-label">Punga: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaPunga">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="periciaTocar" class="col-sm-2 col-form-label">Tocar Instrumento: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaTocar">
+                            </div>
+                            <label for="periciaArmeiro" class="col-sm-2 col-form-label">Armeiro: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="periciaArmeiro">
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <!--Segunda Coluna-->
+            <div class="col-md-5 mx-auto mt-1">
+                <div class="row">
+                    <h1>CyberPug</h1>
+                </div>
+                <div class="text-center">
+                    <img src="image/profile.jpg" class="img-fluid" alt="CyberPug" style="height: 350px;">
+                </div>
+                <div class="col-md-9 mx-auto mt-4">
+                    <form>
+                        <div class="form-group row">
+                            <label for="inputREP" class="col-sm-5 col-form-label">REP</label>
+                            <div class="col-sm-4">
+                                <input type="number" class="form-control" id="inputREP">
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPE" class="col-sm-5 col-form-label">PE Atuais</label>
+                            <div class="col-sm-4">
+                                <input type="number" class="form-control" id="inputPE">
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputHumanidade" class="col-sm-5 col-form-label">Humanidade</label>
+                            <div class="col-sm-4">
+                                <input type="number" class="form-control" id="inputHumanidade">
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+                <!--DInheiro
+                <div class= "col-md-11 mx-auto">
+                    <label class="form-label mt-4 col-sm-2 float-left">Ed: </label>
+                    <div class="form-group col-sm-9">
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+                            <span class="input-group-text">.00</span>
+                        </div>
+
+                    </div>
+                </div>-->
+                <div class="row">
+                    <table class="table table-bordered" id="implantes">
+                        <tbody>
+                            <tr class="table-dark">
+                                <th scope="col">Implantes Ciberneticos</th>
+                                <th scope="col">
+                                    <div class="col-sm-4">
+                                        <input class="form-control" id="numImplantes" type="text" placeholder="Nº"
+                                            disabled="">
+                                    </div>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-bordered" id="TableImplantes">
+                        <thead>
+                            <tr class="table-dark">
+                                <th scope="col">Tipo</th>
+                                <th scope="col">PH</th>
+                                <th scope="col">Preço</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-primary">
+                                <th scope="row">
+                                    <input type="text" class="form-control" id="inputImplTipo">
+                                </th>
+                                <th>
+                                    <input type="number" class="form-control" id="inputImpPh">
+                                </th>
+                                <th>
+                                    <input type="number" class="form-control" id="inputImpPreco">
+                                </th>
+                            </tr>
+                            <tr class="table-primary right">
+                                <th scope="row">
+
+                                </th>
+                                <th>
+                                    <button class="float-right btn btn-dark" type="button"
+                                        id="button-addon4"style='display: none;'>update</button>
+                                </th>
+                                <th>
+                                    <button class="float-right btn btn-dark" type="button"
+                                        id="button-addon1">Add</button>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <ul class="list-group" id="lista-implante">
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <hr>
+        <!--Folha 2-->
+        <!--Coluna 1-->
+        <div class="row">
+            <div class="col-md-5 mx-auto">
+                <h2 id="fluxo">Fluxo de Vida</h2>
+
+                <div class="estilo">
+                    <div class="estilo">
+                        <table class="table">
+                            <thead>
+                                <tr class="table-dark">
+                                    <th scope="col">Estilo</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="table-primary">
+                                    <th scope="row">
+                                        Vestiario
+                                    </th>
+                                    <th>
+                                        <input type="text" class="form-control" id="inputVestiario">
+                                    </th>
+                                </tr>
+                                <tr class="table-primary">
+                                    <th scope="row">
+                                        Cabelo
+                                    </th>
+                                    <th>
+                                        <input type="text" class="form-control" id="inputCabelo">
+                                    </th>
+                                </tr>
+                                <tr class="table-primary">
+                                    <th scope="row">
+                                        Marcas
+                                    </th>
+                                    <th>
+                                        <input type="text" class="form-control" id="inputMarcas">
+                                    </th>
+                                </tr>
+                                <tr class="table-primary">
+                                    <th scope="row">
+                                        Etinia
+                                    </th>
+                                    <th>
+                                        <input type="text" class="form-control" id="inputEtinia">
+                                    </th>
+                                </tr>
+                                <tr class="table-primary">
+                                    <th scope="row">
+                                        Idioma
+                                    </th>
+                                    <th>
+                                        <input type="text" class="form-control" id="inputIdioma">
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="antecedenteFamilia">
+                    <table class="table">
+                        <thead>
+                            <tr class="table-dark">
+                                <th scope="col">Antecedente Familiar</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-primary">
+                                <th scope="row">
+
+                                </th>
+                                <th>
+                                    <input type="text" class="form-control" id="inputAntecedenteFamilia">
+                                </th>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="irmao">
+                    <table class="table">
+                        <thead>
+                            <tr class="table-dark">
+                                <th scope="col">Irmaos</th>
+                                <th scope="col">
+                                    <form>
+                                        <div class="form-row mx-auto">
+                                            <label for="masc">Masc</label>
+                                            <div class="col-3">
+                                                <input type="number" class="form-control" id="masc">
+                                            </div>
+                                            <label for="fem">Fem</label>
+                                            <div class="col-3">
+                                                <input type="number" class="form-control" id="fem">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </th>
+                            </tr>
+                        </thead>
+
+                    </table>
+
+                </div>
+                <div class="motivacao">
+
+                    <table class="table">
+                        <thead>
+                            <tr class="table-dark">
+                                <th scope="col">Motivação</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-primary">
+                                <th scope="row">
+                                    Personalidade
+                                </th>
+                                <th>
+                                    <input type="text" class="form-control" id="inputPersonalidade">
+                                </th>
+                            </tr>
+                            <tr class="table-primary">
+                                <th scope="row">
+                                    Pessoa que mais valoriza
+                                </th>
+                                <th>
+                                    <input type="text" class="form-control" id="inputPessoaMaisValoriza">
+                                </th>
+                            </tr>
+                            <tr class="table-primary">
+                                <th scope="row">
+                                    O que mais valoriza
+                                </th>
+                                <th>
+                                    <input type="text" class="form-control" id="inputMaisValoriza">
+                                </th>
+                            </tr>
+                            <tr class="table-primary">
+                                <th scope="row">
+                                    Opnião Sobre as Pessoas
+                                </th>
+                                <th>
+                                    <input type="text" class="form-control" id="inputOpniao">
+                                </th>
+                            </tr>
+                            <tr class="table-primary">
+                                <th scope="row">
+                                    Obj que mais valoriza
+                                </th>
+                                <th>
+                                    <input type="text" class="form-control" id="inputCoisaMaisValoriza">
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <div class="acontecimentos">
+                    <table class="table" id="TabelaAno">
+                        <thead>
+                            <tr class="table-dark">
+                                <th scope="col">Acontecimentos</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tr class="table-primary">
+                            <th scope="row">
+                                17:
+                            </th>
+                            <td>
+                                <input type="text" class="form-control" id="aontecimentoAno">
+                            </td>
+                        <tr class="table-primary">
+                            <th scope="row">
+                                18:
+                            </th>
+                            <td>
+                                <input type="text" class="form-control" id="aontecimentoAno">
+                            </td>
+                        <tr class="table-primary">
+                            <th scope="row">
+                                19:
+                            </th>
+                            <td>
+                                <input type="text" class="form-control" id="aontecimentoAno">
+                            </td>
+                        <tr class="table-primary">
+                            <th scope="row">
+                                20:
+                            </th>
+                            <td>
+                                <input type="text" class="form-control" id="aontecimentoAno">
+                            </td>
+                        <tr class="table-primary">
+                            <th scope="row">
+                                21:
+                            </th>
+                            <td>
+                                <input type="text" class="form-control" id="aontecimentoAno">
+                            </td>
+                        <tr class="table-primary">
+                            <th scope="row">
+                                22:
+                            </th>
+                            <td>
+                                <input type="text" class="form-control" id="aontecimentoAno">
+                            </td>
+                        <tr class="table-primary">
+                            <th scope="row">
+                                23:
+                            </th>
+                            <td>
+                                <input type="text" class="form-control" id="aontecimentoAno">
+                            </td>
+                        <tr class="table-primary">
+                            <th scope="row">
+                                24:
+                            </th>
+                            <td>
+                                <input type="text" class="form-control" id="aontecimentoAno">
+                            </td>
+                            <tbody>
+
+                            </tbody>
+                    </table>
+
+                </div>
+
+
+            </div>
+            <!--Folha 2-->
+            <!--Coluna 2-->
+            <div class="col-md-7 mx-auto">
+                <h2 id="equipamentos">Equipamentos</h2>
+                <div class="equipamento">
+                    <table class="table">
+                        <thead>
+                            <tr class="table-dark">
+                                <th scope="col">Equipamento</th>
+                                <th scope="col"></th>
+                                <th scope="col">
+                                    <button class="float-right btn btn-primary" type="button"
+                                        id="button-addon2">Add</button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tr class="table-dark">
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Peso</th>
+                            <th scope="col">Preço</th>
+                        </tr>
+                        <tbody>
+                            <tr class="table-primary">
+                                <th scope="row">
+                                    <input type="text" class="form-control" id="inputEquipTipo">
+                                </th>
+                                <th>
+                                    <input type="number" class="form-control" id="inputEquipPeso">
+                                </th>
+                                <th>
+                                    <input type="number" class="form-control" id="inputEquipPreço">
+                                </th>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <ul class="list-group" id="lista-equipamento">
+
+                    </ul>
+                    
+
+                </div>
+                <br>
+                <div class="armas" id="armas">
+                    <table class="table">
+                        <thead>
+                            <tr class="table-dark">
+                                <th scope="col">Armas</th>
+                                <th scope="col"> </th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col">
+                                    <button class="btn btn-primary float-right" type="button"
+                                        id="button-addon3">Add</button>
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tr class="table-dark">
+                            <th scope="col">Nome</th>
+                            <th scope="col">Tipo </th>
+                            <th scope="col">Preci</th>
+                            <th scope="col">Ocult</th>
+                            <th scope="col">Dispon</th>
+                            <th scope="col">Dano</th>
+                            <th scope="col">#Tiros</th>
+                            <th scope="col">CdT</th>
+                            <th scope="col">Confi</th>
+                        </tr>
+
+                        <tbody>
+                            <tr class="table-primary">
+                                <th scope="row">
+                                    <input type="text" class="form-control" id="inputArmaNome">
+                                </th>
+                                <th>
+                                    <input type="text" class="form-control" id="inputArmaTipo">
+                                </th>
+                                <th>
+                                    <input type="text" class="form-control" id="inputArmaPreci">
+                                </th>
+                                <th>
+                                    <input type="text" class="form-control" id="inputArmaOcult">
+                                </th>
+                                <th>
+                                    <input type="text" class="form-control" id="inputArmaDispon">
+                                </th>
+                                <th>
+                                    <input type="text" class="form-control" id="inputArmaDano">
+                                </th>
+                                <th>
+                                    <input type="text" class="form-control" id="inputArmaTiros">
+                                </th>
+                                <th>
+                                    <input type="text" class="form-control" id="inputArmaCdT">
+                                </th>
+                                <th>
+                                    <input type="text" class="form-control" id="inputArmaConfia">
+                                </th>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <ul class="list-group" id="lista-arma">
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
