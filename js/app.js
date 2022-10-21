@@ -191,7 +191,8 @@ const ItemCtrl = (function () {
         getCurrentEquipe: function () {
             return data.currentEquip;
         },
-
+        //Armas
+        //Add armas
         addArma: function (nome, tipo, precisao, ocult, disp, dano, tipo, cadencia, confia) {
             //create id
             let ID;
@@ -211,7 +212,34 @@ const ItemCtrl = (function () {
 
             return newArma;
 
-        }
+        },
+
+        //delete arma from data structure
+        deleteDataArma: function (id) {
+            const ids = data.armas.map((arma) => {
+                return arma.id;
+            }
+            );
+            //get index
+            const index = ids.indexOf(id);
+
+            //remove equip
+            data.armas.splice(index, 1);
+
+
+        },
+
+        getArmapById: function (id) {
+            let found = null;
+            data.armas.forEach((arma) => {
+                if (arma.id === id) {
+                    found = arma
+                }
+            })
+
+            return found;
+
+        },
 
     }
 
@@ -421,6 +449,13 @@ const UICtrl = (function () {
             document.querySelector(Selector.armaList).insertAdjacentElement('beforeend', li);
 
         },
+        //delete arma
+        delteUiArma: function(id){
+            const itemID = `#item-${id}`;
+            const arma = document.querySelector(itemID);
+            arma.remove();
+        },
+
         clearArmaInput: function () {
 
             document.querySelector(Selector.armaNome).value = '';
@@ -481,7 +516,11 @@ const App = (function (ItemCtrl, UICtrl) {
         document.querySelector(UiSelector.armaBtn).addEventListener('click', addArmaSubmit);
 
 
+        //event to delete arma
+        document.querySelector(UiSelector.armaList).addEventListener('click', deleteArmaClick)
         //end of events arma
+
+        //event de salvar
         document.addEventListener('change', () => {
 
 
@@ -882,6 +921,38 @@ const App = (function (ItemCtrl, UICtrl) {
             UICtrl.clearArmaInput();
 
         }
+
+        e.preventDefault();
+    };
+
+    const deleteArmaClick = function(e){
+        if(e.target.classList.contains('remove-arma')){
+            //get arma list id
+            const listId = e.target.parentNode.parentNode.parentNode.id;
+
+            //break into an array
+            const listIdArr = listId.split('-');
+
+            //get atual id
+            const id = parseInt(listIdArr[1]);
+
+            //get arma
+
+            const armaToDelete = ItemCtrl.getArmapById(id);
+
+            //delete arma from structure
+            if (confirm('Deseja remover arma?')) {
+                //deleete arma from data struture
+                ItemCtrl.deleteDataArma(armaToDelete.id);
+                //delete arma from Ui
+                UICtrl.delteUiArma(armaToDelete.id);
+
+                
+            }
+
+
+        }
+
 
         e.preventDefault();
     }
