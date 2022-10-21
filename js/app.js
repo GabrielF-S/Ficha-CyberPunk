@@ -334,8 +334,8 @@ const UICtrl = (function () {
 
                 }
             })
-            document.querySelector(Selector.impEditBtn).style.display = 'none'
-            this.clearImplInput();
+            document.querySelector(Selector.equipBtn).textContent = 'Add';
+            this.clearEquiInput();
         
 
         },
