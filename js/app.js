@@ -213,8 +213,36 @@ const ItemCtrl = (function () {
             return newArma;
 
         },
+        setCurrentArma : function(arma){
+            data.currentArma = arma;
+        },
+        getCurrentArma: function(){
+            return data.currentArma;
+        },
 
-        //delete arma from data structure
+        //Update arma
+
+        updateArma: function(nome, tipo, precisao, ocult, disp, dano, tiros, cadencia, confia){
+            let found = null;
+            data.armas.forEach((arma) => {
+                if (arma.id === data.currentArma.id) {
+                    arma.nome = nome; 
+                    arma.tipo = tipo; 
+                    arma.precisao = precisao; 
+                    arma.ocult = ocult; 
+                    arma.disp = disp; 
+                    arma.dano = dano; 
+                    arma.tiros = tiros; 
+                    arma.cadencia = cadencia; 
+                    arma.confia = confia;
+                    found = arma;
+                }
+            });
+            return found
+
+
+        },
+        //delete arma 
         deleteDataArma: function (id) {
             const ids = data.armas.map((arma) => {
                 return arma.id;
@@ -277,6 +305,7 @@ const UICtrl = (function () {
         armaCadencia: '#inputArmaCdT',
         armaConfia: '#inputArmaConfia',
         armaList: '#lista-arma',
+        armaListItems: '#lista-arma li',
         salvarBtn: '#btnSalvar',
 
     }
@@ -345,10 +374,13 @@ const UICtrl = (function () {
             document.querySelector(Selector.impBtn).textContent = 'Update';
 
         },
-        delteUiImp: function (id) {
+        deleteUiImp: function (id) {
             const itemID = `#item-${id}`;
             const imp = document.querySelector(itemID);
             imp.remove();
+            if(Selector.impBtn.textContent !== 'Add'){
+                document.querySelector(Selector.impBtn).textContent = 'Add';
+            }
         },
         clearImplInput: function () {
             document.querySelector(Selector.impTipo).value = '';
@@ -408,10 +440,13 @@ const UICtrl = (function () {
 
 
         },
-        delteUiEquip: function(id){
+        deleteUiEquip: function(id){
             const itemID = `#item-${id}`;
             const equip = document.querySelector(itemID);
             equip.remove();
+            if(Selector.equipBtn.textContent !== 'Add'){
+                document.querySelector(Selector.equipBtn).textContent = 'Add';
+            }
         },
         clearEquiInput: function () {
             document.querySelector(Selector.equipTipo).value = '';
@@ -449,11 +484,47 @@ const UICtrl = (function () {
             document.querySelector(Selector.armaList).insertAdjacentElement('beforeend', li);
 
         },
+        //update arma
+        addArmaToForm: function(){
+            document.querySelector(Selector.armaNome).value = ItemCtrl.getCurrentArma().nome;
+            document.querySelector(Selector.armaTipo).value = ItemCtrl.getCurrentArma().tipo;
+            document.querySelector(Selector.armaPrecisao).value = ItemCtrl.getCurrentArma().preci;
+            document.querySelector(Selector.armaOcult).value = ItemCtrl.getCurrentArma().ocult;
+            document.querySelector(Selector.armaDisp).value = ItemCtrl.getCurrentArma().dispo;
+            document.querySelector(Selector.armaDano).value = ItemCtrl.getCurrentArma().dano;
+            document.querySelector(Selector.armaTiros).value = ItemCtrl.getCurrentArma().tiros;
+            document.querySelector(Selector.armaCadencia).value = ItemCtrl.getCurrentArma().cdt;
+            document.querySelector(Selector.armaConfia).value = ItemCtrl.getCurrentArma().confi;
+
+            document.querySelector(Selector.armaBtn).textContent = 'Update';
+
+        },
+        updateListArma: function(arma){
+            let listArma = document.querySelectorAll(Selector.armaListItems);
+
+           
+            //turn node lis into array
+            listArma = Array.from(listArma);
+
+            listArma.forEach((armas) => {
+                const itemID = armas.getAttribute('id');
+
+                if (itemID === `item-${arma.id}`) {
+                    document.querySelector(`#${itemID}`).innerHTML = `<strong>${arma.nome}</strong> | <em>${arma.tipo}</em> | <em>${arma.preci}</em> | <em>${arma.ocult}</em> |  <em>${arma.dispo}</em> |  <em>${arma.dano}</em>  |  <em>${arma.tiros}</em>| <em>${arma.cdt}</em> | <em>${arma.confi}</em> <span class="badge bg-primary rounded-pill"><a href="#" class ="secondary-content"><i class="edit-arma fa fa-pencil"></i></a> <a href="#" class ="secondary-content"><i class="remove-arma fa fa-remove"></i></a></span>`;
+
+                }
+            })
+            document.querySelector(Selector.armaBtn).textContent = 'Add';
+            this.clearArmaInput();
+        },
         //delete arma
-        delteUiArma: function(id){
+        deleteUiArma: function(id){
             const itemID = `#item-${id}`;
             const arma = document.querySelector(itemID);
             arma.remove();
+            if(Selector.armaBtn.textContent !== 'Add'){
+                document.querySelector(Selector.armaBtn).textContent = 'Add';
+            }
         },
 
         clearArmaInput: function () {
@@ -513,8 +584,10 @@ const App = (function (ItemCtrl, UICtrl) {
 
         //events for arma
         //add arma
-        document.querySelector(UiSelector.armaBtn).addEventListener('click', addArmaSubmit);
+        document.querySelector(UiSelector.armaBtn).addEventListener('click', armaBtnClick);
 
+        //update arma
+        document.querySelector(UiSelector.armaList).addEventListener('click', editArmapClick)
 
         //event to delete arma
         document.querySelector(UiSelector.armaList).addEventListener('click', deleteArmaClick)
@@ -707,7 +780,7 @@ const App = (function (ItemCtrl, UICtrl) {
         const input = UICtrl.getImpInput();
 
         let btn = document.querySelector(UICtrl.getSelector().impBtn);
-        console.log(btn.textContent)
+        
 
         if (btn.textContent === 'Add') {
             addImpSubmit(input);
@@ -795,7 +868,7 @@ const App = (function (ItemCtrl, UICtrl) {
                 //deleete imp from data struture
                 ItemCtrl.deleteDataImp(impToDelete.id);
                 //delete imp from Ui
-                UICtrl.delteUiImp(impToDelete.id);
+                UICtrl.deleteUiImp(impToDelete.id);
 
                 // update imp account
                 UICtrl.QtdImp();
@@ -884,18 +957,12 @@ const App = (function (ItemCtrl, UICtrl) {
 
             const equipToDelete = ItemCtrl.getEquipById(id);
 
-            //set current equip
-
-            //ItemCtrl.setCurrentEquip(equipToDelete);
-
-
-            //get current equip
-
+          
             if (confirm('Deseja remover Equipamento?')) {
                 //deleete equipe from data struture
                 ItemCtrl.deleteDataEquip(equipToDelete.id);
                 //delete equip from Ui
-                UICtrl.delteUiEquip(equipToDelete.id);
+                UICtrl.deleteUiEquip(equipToDelete.id);
             }
 
 
@@ -906,6 +973,21 @@ const App = (function (ItemCtrl, UICtrl) {
         e.preventDefault();
     }
 
+    //armas
+    //listener btn
+    const armaBtnClick = function(e){
+        const input = UICtrl.getArmaInput();
+
+        let btn = document.querySelector(UICtrl.getSelector().armaBtn);
+        if (btn.textContent === 'Add') {
+            addArmaSubmit(input);
+
+        } else {
+            editArmaSubmit(input);
+        }
+
+        e.preventDefault();
+    }
     //add armas
     const addArmaSubmit = function (e) {
         const input = UICtrl.getArmaInput();
@@ -922,7 +1004,43 @@ const App = (function (ItemCtrl, UICtrl) {
 
         }
 
+        
+    };
+
+    const editArmapClick = function(e){
+
+        if (e.target.classList.contains('edit-arma')) {
+            //get impl list id
+            const listId = e.target.parentNode.parentNode.parentNode.id;
+
+            //break into an array
+            const listIdArr = listId.split('-');
+
+            //get atual id
+            const id = parseInt(listIdArr[1]);
+
+            //get imp
+
+            const armaToEdit = ItemCtrl.getArmapById(id);
+            //set current Impl
+            ItemCtrl.setCurrentArma(armaToEdit);
+
+            //add imp to form
+            UICtrl.addArmaToForm();
+        }
+
+
         e.preventDefault();
+
+    };
+    const editArmaSubmit= function(input){
+        //update item
+        const updateArma = ItemCtrl.updateArma(input.nome, input.tipo, input.precisao, input.ocult, input.disp, input.dano, input.tiros, input.cadencia, input.confia);
+
+        //update UI
+        UICtrl.updateListArma(updateArma);
+
+
     };
 
     const deleteArmaClick = function(e){
@@ -945,7 +1063,7 @@ const App = (function (ItemCtrl, UICtrl) {
                 //deleete arma from data struture
                 ItemCtrl.deleteDataArma(armaToDelete.id);
                 //delete arma from Ui
-                UICtrl.delteUiArma(armaToDelete.id);
+                UICtrl.deleteUiArma(armaToDelete.id);
 
                 
             }
