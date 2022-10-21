@@ -149,6 +149,32 @@ const ItemCtrl = (function () {
             return newEquip;
 
         },
+        updateEquip: function (tipo, peso, preco) {
+            let found = null;
+
+            data.equip.forEach((equips) => {
+                if (equips.id === data.currentEquip.id) {
+                    equips.tipo = tipo;
+                    equips.peso = peso;
+                    equips.preco = preco;
+                    found = equips;
+                }
+            });
+            return found;
+        },
+        deleteDataEquip: function (id) {
+            const ids = data.equip.map((equips) => {
+                return equips.id;
+            }
+            );
+            //get index
+            const index = ids.indexOf(id);
+
+            //remove equip
+            data.equip.splice(index, 1);
+
+
+        },
         getEquipById: function (id) {
             let found = null;
             data.equip.forEach((equips) => {
@@ -162,22 +188,10 @@ const ItemCtrl = (function () {
             data.currentEquip = equipamento;
 
         },
-        getCurrentEquipe :  function(){
+        getCurrentEquipe: function () {
             return data.currentEquip;
         },
-        updateEquip: function(tipo, peso, preco){
-            let found = null;
 
-            data.equip.forEach((equips)=>{
-                if(equips.id === data.currentEquip.id){
-                    equips.tipo = tipo;
-                    equips.peso = peso;
-                    equips.preco = preco;
-                    found = equips;
-                }
-            });
-            return found;
-        },
         addArma: function (nome, tipo, precisao, ocult, disp, dano, tipo, cadencia, confia) {
             //create id
             let ID;
@@ -223,7 +237,7 @@ const UICtrl = (function () {
         equipPeso: '#inputEquipPeso',
         equipPreco: '#inputEquipPreço',
         equipList: '#lista-equipamento',
-        equipListItems : '#lista-equipamento li',
+        equipListItems: '#lista-equipamento li',
         armaBtn: '#button-addon3',
         armaNome: '#inputArmaNome',
         armaTipo: '#inputArmaTipo',
@@ -294,11 +308,7 @@ const UICtrl = (function () {
             document.querySelector(Selector.impBtn).textContent = 'Add';
             this.clearImplInput();
         },
-        delteUiImp: function (id) {
-            const itemID = `#item-${id}`;
-            const imp = document.querySelector(itemID);
-            imp.remove();
-        },
+
 
         addImpToForm: function () {
             document.querySelector(Selector.impTipo).value = ItemCtrl.getCurrentImp().tipo;
@@ -307,7 +317,11 @@ const UICtrl = (function () {
             document.querySelector(Selector.impBtn).textContent = 'Update';
 
         },
-
+        delteUiImp: function (id) {
+            const itemID = `#item-${id}`;
+            const imp = document.querySelector(itemID);
+            imp.remove();
+        },
         clearImplInput: function () {
             document.querySelector(Selector.impTipo).value = '';
             document.querySelector(Selector.impPh).value = '';
@@ -321,7 +335,7 @@ const UICtrl = (function () {
                 preco: document.querySelector(Selector.equipPreco).value,
             }
         },
-        updateListEquip: function(equips){
+        updateListEquip: function (equips) {
             let listEquip = document.querySelectorAll(Selector.equipListItems);
             //turn node lis into array
             listEquip = Array.from(listEquip);
@@ -336,7 +350,7 @@ const UICtrl = (function () {
             })
             document.querySelector(Selector.equipBtn).textContent = 'Add';
             this.clearEquiInput();
-        
+
 
         },
 
@@ -356,13 +370,6 @@ const UICtrl = (function () {
 
         },
 
-
-        clearEquiInput: function () {
-            document.querySelector(Selector.equipTipo).value = '';
-            document.querySelector(Selector.equipPeso).value = '';
-            document.querySelector(Selector.equipPreco).value = '';
-        },
-
         addEquipToForm: function () {
             document.querySelector(Selector.equipTipo).value = ItemCtrl.getCurrentEquipe().tipo;
             document.querySelector(Selector.
@@ -373,6 +380,18 @@ const UICtrl = (function () {
 
 
         },
+        delteUiEquip: function(id){
+            const itemID = `#item-${id}`;
+            const equip = document.querySelector(itemID);
+            equip.remove();
+        },
+        clearEquiInput: function () {
+            document.querySelector(Selector.equipTipo).value = '';
+            document.querySelector(Selector.equipPeso).value = '';
+            document.querySelector(Selector.equipPreco).value = '';
+        },
+
+
 
         getArmaInput: function () {
             return {
@@ -440,7 +459,6 @@ const App = (function (ItemCtrl, UICtrl) {
         //edi imp icon click
         document.querySelector(UiSelector.impList).addEventListener('click', editImpClick);
         //edit imp event
-       // document.querySelector(UiSelector.impEditBtn).addEventListener('click', editImpSubmit);
 
         //delete item event
         document.querySelector(UiSelector.impList).addEventListener('click', deleteImpClick);
@@ -450,8 +468,11 @@ const App = (function (ItemCtrl, UICtrl) {
         //add equip event
         document.querySelector(UiSelector.equipBtn).addEventListener('click', equipBtnClick);
 
-        //edit  euip icon click
+        //edit  equip icon click
         document.querySelector(UiSelector.equipList).addEventListener('click', editEquipClick);
+
+        //delete  equipe  event
+        document.querySelector(UiSelector.equipList).addEventListener('click', deleteEquipClick)
 
         //end of events for equip
 
@@ -643,7 +664,7 @@ const App = (function (ItemCtrl, UICtrl) {
 
     };
     //Add Implantes
-    const implBtnClick = function(e){
+    const implBtnClick = function (e) {
         const input = UICtrl.getImpInput();
 
         let btn = document.querySelector(UICtrl.getSelector().impBtn);
@@ -651,7 +672,7 @@ const App = (function (ItemCtrl, UICtrl) {
 
         if (btn.textContent === 'Add') {
             addImpSubmit(input);
-            
+
         } else {
             editImpSubmit(input);
         }
@@ -673,7 +694,7 @@ const App = (function (ItemCtrl, UICtrl) {
             UICtrl.clearImplInput();
         }
 
-      
+
     };
     //editar implantes
     const editImpClick = function (e) {
@@ -700,7 +721,7 @@ const App = (function (ItemCtrl, UICtrl) {
     };
 
     const editImpSubmit = function (input) {
-        
+
         //update item
         const updateImp = ItemCtrl.updateImp(input.tipo, input.ph, input.preco);
 
@@ -708,7 +729,7 @@ const App = (function (ItemCtrl, UICtrl) {
         UICtrl.updateListImp(updateImp);
 
 
-       
+
     };
 
     const deleteImpClick = function (e) {
@@ -726,18 +747,18 @@ const App = (function (ItemCtrl, UICtrl) {
 
             const impToDelete = ItemCtrl.getImpById(id);
             //set current Impl
-            ItemCtrl.setCurrentImp(impToDelete);
+            //ItemCtrl.setCurrentImp(impToDelete);
 
 
-            const currentImp = ItemCtrl.getCurrentImp();
+            //const currentImp = ItemCtrl.getCurrentImp();
             //delete imp from structure
             if (confirm('Deseja remover implante?')) {
+                //deleete imp from data struture
+                ItemCtrl.deleteDataImp(impToDelete.id);
+                //delete imp from Ui
+                UICtrl.delteUiImp(impToDelete.id);
 
-                ItemCtrl.deleteDataImp(currentImp.id);
-
-                UICtrl.delteUiImp(currentImp.id);
-
-
+                // update imp account
                 UICtrl.QtdImp();
             }
 
@@ -752,16 +773,16 @@ const App = (function (ItemCtrl, UICtrl) {
         let btn = document.querySelector(UICtrl.getSelector().equipBtn);
         if (btn.textContent === 'Add') {
 
-            addEquipSubmit(input); 
+            addEquipSubmit(input);
 
-        }else{
+        } else {
             editEquipSubmit(input);
         }
 
         e.preventDefault();
     };
 
-    const addEquipSubmit = function(input){
+    const addEquipSubmit = function (input) {
         if (input.tipo !== '' && input.peso !== '' && input.preco !== '') {
             //add equip
             const newEquip = ItemCtrl.AddEquip(input.tipo, input.peso, input.preco);
@@ -773,13 +794,13 @@ const App = (function (ItemCtrl, UICtrl) {
 
         }
     };
-    const editEquipSubmit = function(input){
+    const editEquipSubmit = function (input) {
 
-         //update equip
-         const updateEquip = ItemCtrl.updateEquip(input.tipo, input.peso, input.preco);
+        //update equip
+        const updateEquip = ItemCtrl.updateEquip(input.tipo, input.peso, input.preco);
 
-         //update UI
-         UICtrl.updateListEquip(updateEquip);
+        //update UI
+        UICtrl.updateListEquip(updateEquip);
 
     };
 
@@ -808,6 +829,45 @@ const App = (function (ItemCtrl, UICtrl) {
         }
         e.preventDefault();
     };
+    const deleteEquipClick = function (e) {
+        if (e.target.classList.contains('remove-equip')) {
+            //get equip list id
+            const listId = e.target.parentNode.parentNode.parentNode.id;
+
+            //break into an array
+            const listIdArr = listId.split('-');
+
+            //get atual id
+            const id = parseInt(listIdArr[1]);
+
+
+            //get equip
+
+            const equipToDelete = ItemCtrl.getEquipById(id);
+
+            //set current equip
+
+            //ItemCtrl.setCurrentEquip(equipToDelete);
+
+
+            //get current equip
+
+            if (confirm('Deseja remover Equipamento?')) {
+                //deleete equipe from data struture
+                ItemCtrl.deleteDataEquip(equipToDelete.id);
+                //delete equip from Ui
+                UICtrl.delteUiEquip(equipToDelete.id);
+            }
+
+
+
+        }
+
+
+        e.preventDefault();
+    }
+
+    //add armas
     const addArmaSubmit = function (e) {
         const input = UICtrl.getArmaInput();
 
