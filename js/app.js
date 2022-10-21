@@ -291,7 +291,7 @@ const UICtrl = (function () {
 
                 }
             })
-            document.querySelector(Selector.impEditBtn).style.display = 'none'
+            document.querySelector(Selector.impBtn).textContent = 'Add';
             this.clearImplInput();
         },
         delteUiImp: function (id) {
@@ -304,7 +304,7 @@ const UICtrl = (function () {
             document.querySelector(Selector.impTipo).value = ItemCtrl.getCurrentImp().tipo;
             document.querySelector(Selector.impPh).value = ItemCtrl.getCurrentImp().ph;
             document.querySelector(Selector.impPreco).value = ItemCtrl.getCurrentImp().preco;
-            document.querySelector(Selector.impEditBtn).style.display = 'inline'
+            document.querySelector(Selector.impBtn).textContent = 'Update';
 
         },
 
@@ -435,12 +435,12 @@ const App = (function (ItemCtrl, UICtrl) {
 
         //Events for Impl
         //add imp event
-        document.querySelector(UiSelector.impBtn).addEventListener('click', addImpSubmit);
+        document.querySelector(UiSelector.impBtn).addEventListener('click', implBtnClick);
 
         //edi imp icon click
         document.querySelector(UiSelector.impList).addEventListener('click', editImpClick);
         //edit imp event
-        document.querySelector(UiSelector.impEditBtn).addEventListener('click', editImpSubmit);
+       // document.querySelector(UiSelector.impEditBtn).addEventListener('click', editImpSubmit);
 
         //delete item event
         document.querySelector(UiSelector.impList).addEventListener('click', deleteImpClick);
@@ -643,9 +643,22 @@ const App = (function (ItemCtrl, UICtrl) {
 
     };
     //Add Implantes
-    const addImpSubmit = function (e) {
-
+    const implBtnClick = function(e){
         const input = UICtrl.getImpInput();
+
+        let btn = document.querySelector(UICtrl.getSelector().impBtn);
+        console.log(btn.textContent)
+
+        if (btn.textContent === 'Add') {
+            addImpSubmit(input);
+            
+        } else {
+            editImpSubmit(input);
+        }
+
+        e.preventDefault();
+    };
+    const addImpSubmit = function (input) {
 
 
         if (input.tipo !== '' && input.ph !== '' && input.preco !== '') {
@@ -660,7 +673,7 @@ const App = (function (ItemCtrl, UICtrl) {
             UICtrl.clearImplInput();
         }
 
-        e.preventDefault();
+      
     };
     //editar implantes
     const editImpClick = function (e) {
@@ -686,10 +699,8 @@ const App = (function (ItemCtrl, UICtrl) {
         e.preventDefault();
     };
 
-    const editImpSubmit = function (e) {
-        //get imp submit
-        const input = UICtrl.getImpInput();
-
+    const editImpSubmit = function (input) {
+        
         //update item
         const updateImp = ItemCtrl.updateImp(input.tipo, input.ph, input.preco);
 
@@ -697,7 +708,7 @@ const App = (function (ItemCtrl, UICtrl) {
         UICtrl.updateListImp(updateImp);
 
 
-        e.preventDefault();
+       
     };
 
     const deleteImpClick = function (e) {
