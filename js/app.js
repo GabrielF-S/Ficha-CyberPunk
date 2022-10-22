@@ -1,5 +1,33 @@
 // Storage Controller 
+const StorageCtrl = (function(){
 
+    return{
+        storeImplante: function(implantes){
+            let impl
+            //check if any implante in LS
+            if (localStorage.getItem('implantes')===null) {{
+                impl = [];
+                //push new impl
+                impl.push(implantes);
+                //set in LS
+                localStorage.setItem('implantes', JSON.stringify(impl));
+            }
+                
+            } else {
+                //get what is already in LS
+                impl = JSON.parse(localStorage.getItem('implantes'));
+    
+                //push new implante
+                impl.push(implantes);
+    
+                //set again in ls
+                localStorage.setItem('implantes', JSON.stringify(impl));
+            }
+    
+        }
+    
+    }
+})();
 
 
 
@@ -547,7 +575,7 @@ const UICtrl = (function () {
 
 
 //App  Controller
-const App = (function (ItemCtrl, UICtrl) {
+const App = (function (ItemCtrl, UICtrl, StorageCtrl) {
     let Ficha = {};
 
     const loadEventListener = function () {
@@ -801,6 +829,8 @@ const App = (function (ItemCtrl, UICtrl) {
 
             //add imp to UI
             UICtrl.addListImp(newImp);
+            //add to LS
+            StorageCtrl.storeImplante(newImp);
 
             //clear input
             UICtrl.clearImplInput();
@@ -1085,6 +1115,6 @@ const App = (function (ItemCtrl, UICtrl) {
             return Ficha
         }
     }
-})(ItemCtrl, UICtrl);
+})(ItemCtrl, UICtrl, StorageCtrl);
 
 App.init();
