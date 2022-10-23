@@ -3,7 +3,7 @@ const StorageCtrl = (function(){
 
     return{
         storeImplante: function(implantes){
-            let impl
+            let impl;
             //check if any implante in LS
             if (localStorage.getItem('implantes')===null) {{
                 impl = [];
@@ -24,7 +24,112 @@ const StorageCtrl = (function(){
                 localStorage.setItem('implantes', JSON.stringify(impl));
             }
     
+        },
+        deleteImpLs: function(id){
+
+            let imp = JSON.parse(localStorage.getItem('implantes'));
+
+            imp.forEach((implante, index)=>{
+                if(implante.id === id){
+                    imp.splice(index, 1)
+                }
+            })
+
+            //set again in ls
+            localStorage.setItem('implantes', JSON.stringify(imp));
+
+
+
+        },
+        storeEquipamento : function(equipamento){
+            let equip;
+            //check if any equipamento in ls
+            if(localStorage.getItem('equipamentos') === null){ 
+                equip = [];
+                //push new equipamento
+                equip.push(equipamento);
+                //set in ls
+                localStorage.setItem('equipamentos', JSON.stringify(equipamento));
+
+            }else {
+                //get what is already in LS
+                equip = JSON.parse(localStorage.getItem('equipamentos'));
+
+                //push new equip
+
+                equip.push(equipamento);
+
+                localStorage.setItem('equipamentos', JSON.stringify(equip));
+            }
+        },
+        deleteEquipLs: function(id){
+
+            let equip = JSON.parse(localStorage.getItem('equipamentos'));
+
+           
+            equip.forEach((equips, index)=>{
+                if(equips.id === id){
+                    equip.splice(index, 1)
+                }
+            })
+
+            localStorage.setItem('equipamentos', JSON.stringify(equip));
+
+        },
+        storeArma: function(arma){
+            let arm;
+
+            //check if any arma in ls
+            if (localStorage.getItem('armas')=== null) {
+                arm = [];
+
+                arm.push(arma);
+
+                localStorage.setItem('armas', JSON.stringify(arm));
+                
+            } else {
+                
+                arm = JSON.parse(localStorage.getItem('armas'));
+
+                arm.push(arma);
+
+                localStorage.setItem('armas', JSON.stringify(arm));
+                
+            }
+        },
+
+        deleteArmaLs: function(id){
+            let armas = JSON.parse(localStorage.getItem('armas'));
+
+            armas.forEach((arma, index)=>{
+                if (arma.id === id) {
+                    armas.splice(index, 1);
+                }
+            })
+
+            localStorage.setItem('armas', JSON.stringify(armas));
+        },
+        storeFicha: function(ficha){
+            let fi;
+            if (localStorage.getItem('ficha'=== null)) {
+                fi = [];
+
+                fi.push(ficha);
+
+                localStorage.setItem('ficha', JSON.stringify(fi));
+                
+            } else {
+                
+                fi = JSON.parse(localStorage.getItem('ficha'));
+
+                fi.push(ficha);
+
+                localStorage.setItem('ficha', JSON.stringify(fi));
+                
+            }
+
         }
+
     
     }
 })();
@@ -40,7 +145,7 @@ const ItemCtrl = (function () {
     const Ficha = function (nome, idade, papel, vit, pp) {
         this.nome = nome;
         this.idade = idade,
-            this.papel = papel;
+        this.papel = papel;
         this.vit = vit;
         this.pp = pp;
 
@@ -256,13 +361,13 @@ const ItemCtrl = (function () {
                 if (arma.id === data.currentArma.id) {
                     arma.nome = nome; 
                     arma.tipo = tipo; 
-                    arma.precisao = precisao; 
+                    arma.preci = precisao;//
                     arma.ocult = ocult; 
-                    arma.disp = disp; 
+                    arma.dispo = disp; //
                     arma.dano = dano; 
                     arma.tiros = tiros; 
-                    arma.cadencia = cadencia; 
-                    arma.confia = confia;
+                    arma.cdt= cadencia; 
+                    arma.confi = confia;//
                     found = arma;
                 }
             });
@@ -900,6 +1005,8 @@ const App = (function (ItemCtrl, UICtrl, StorageCtrl) {
                 //delete imp from Ui
                 UICtrl.deleteUiImp(impToDelete.id);
 
+                //delete from LS
+                StorageCtrl.deleteImpLs(impToDelete.id)
                 // update imp account
                 UICtrl.QtdImp();
             }
@@ -931,6 +1038,8 @@ const App = (function (ItemCtrl, UICtrl, StorageCtrl) {
 
             //add to Ui
             UICtrl.addListEquip(newEquip);
+            //add equio in LS
+            StorageCtrl.storeEquipamento(newEquip);
             //clear fields
             UICtrl.clearEquiInput();
 
@@ -993,6 +1102,9 @@ const App = (function (ItemCtrl, UICtrl, StorageCtrl) {
                 ItemCtrl.deleteDataEquip(equipToDelete.id);
                 //delete equip from Ui
                 UICtrl.deleteUiEquip(equipToDelete.id);
+
+                //deleete from LS
+                StorageCtrl.deleteEquipLs(equipToDelete.id);
             }
 
 
@@ -1029,6 +1141,8 @@ const App = (function (ItemCtrl, UICtrl, StorageCtrl) {
 
             //add to UI
             UICtrl.addListArma(newArma);
+            //add arma no LS
+            StorageCtrl.storeArma(newArma);
 
             UICtrl.clearArmaInput();
 
@@ -1094,6 +1208,9 @@ const App = (function (ItemCtrl, UICtrl, StorageCtrl) {
                 ItemCtrl.deleteDataArma(armaToDelete.id);
                 //delete arma from Ui
                 UICtrl.deleteUiArma(armaToDelete.id);
+
+                //delete from ls
+                StorageCtrl.deleteArmaLs(armaToDelete.id);
 
                 
             }
