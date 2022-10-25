@@ -5,7 +5,7 @@ const StorageCtrl = (function(){
         storeImplante: function(implantes){
             let impl;
             //check if any implante in LS
-            if (localStorage.getItem('implantes')===null) {{
+            if (localStorage.getItem('implantes')===null) {
                 impl = [];
                 //push new impl
                 impl.push(implantes);
@@ -13,18 +13,19 @@ const StorageCtrl = (function(){
                 localStorage.setItem('implantes', JSON.stringify(impl));
             }
                 
-            } else {
+             else {
                 //get what is already in LS
                 impl = JSON.parse(localStorage.getItem('implantes'));
     
                 //push new implante
-                impl.push(implantes);
+                impl.push({implantes});
     
                 //set again in ls
                 localStorage.setItem('implantes', JSON.stringify(impl));
             }
-    
         },
+    
+       
         deleteImpLs: function(id){
 
             let imp = JSON.parse(localStorage.getItem('implantes'));
@@ -43,24 +44,26 @@ const StorageCtrl = (function(){
         },
         storeEquipamento : function(equipamento){
             let equip;
-            //check if any equipamento in ls
-            if(localStorage.getItem('equipamentos') === null){ 
+            //check if any implante in LS
+            if (localStorage.getItem('equipamentos')===null) {
                 equip = [];
-                //push new equipamento
+                //push new equip
                 equip.push(equipamento);
-                //set in ls
-                localStorage.setItem('equipamentos', JSON.stringify(equipamento));
-
-            }else {
+                //set in LS
+                localStorage.setItem('equipamentos', JSON.stringify(equip));
+            
+                
+            } else {
                 //get what is already in LS
                 equip = JSON.parse(localStorage.getItem('equipamentos'));
-
-                //push new equip
-
+    
+                //push new implante
                 equip.push(equipamento);
-
+    
+                //set again in ls
                 localStorage.setItem('equipamentos', JSON.stringify(equip));
             }
+    
         },
         deleteEquipLs: function(id){
 
